@@ -1,5 +1,5 @@
 import express from "express";
-const ProductManager = "./ProductManager.js";
+import ProductManager from "./ProductManager.js";
 
 const PORT = 8080; 
 const app = express();
