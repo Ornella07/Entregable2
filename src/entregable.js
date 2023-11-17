@@ -1,12 +1,4 @@
-import express, { response } from 'express';
-import ProductManager from './ProductManager.js';
-const PORT = 8080;
-const app = express();
-
-const jsonFileName = './ProductManager.js';
-const productManager = new ProductManager('./src/productos.json');
-
-//* Inicializamos la instancia y cargimport express from 'express';
+import express from 'express';
 import ProductManager from './ProductManager.js';
 
 const PORT = 8080;
@@ -51,16 +43,7 @@ const productManager = new ProductManager(jsonFileName);
     productManager.init().then(() => {
         console.log('Product Manager Inicializado correctamente');
 
-        productManager.addProduct('Producto 1', 'Descripción 1', 100, 'imagen1.jpg', 'code1', 10);
-        productManager.addProduct('Producto 2', 'Descripción 2', 150, 'imagen2.jpg', 'code2', 15);
-        productManager.addProduct('Producto 3', 'Descripción 3', 200, 'imagen3.jpg', 'code3', 20);
-        productManager.addProduct('Producto 4', 'Descripción 4', 250, 'imagen4.jpg', 'code4', 25);
-        productManager.addProduct('Producto 5', 'Descripción 5', 300, 'imagen5.jpg', 'code5', 30);
-        productManager.addProduct('Producto 6', 'Descripción 6', 350, 'imagen6.jpg', 'code6', 35);
-        productManager.addProduct('Producto 7', 'Descripción 7', 400, 'imagen7.jpg', 'code7', 40);
-        productManager.addProduct('Producto 8', 'Descripción 8', 450, 'imagen8.jpg', 'code8', 45);
-        productManager.addProduct('Producto 9', 'Descripción 9', 500, 'imagen9.jpg', 'code9', 50);
-        productManager.addProduct('Producto 10', 'Descripción 10', 550, 'imagen10.jpg', 'code10', 55);
+        
 
     //? Verificando que los productos se carguen correctamente
     productManager.getProducts().then((products) => {
