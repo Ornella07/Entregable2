@@ -1,4 +1,4 @@
-import fs from "fs";
+import { promises as fsPromises } from "fs";
 
 export default class ProductManager {
     constructor(jsonFileName) {
@@ -14,12 +14,12 @@ export default class ProductManager {
             // ? Encontramos el último ID al inicializarse
             this.id = this.products.reduce((maxId, product) => Math.max(maxId, product.id), 0);
         } catch (error) {
-            // ! Si hay un error al leer el archivo, asumimos que es porque no existe o el mismo esta vacion, lo manejamos creando un nuevo archivo.
+            // ! Si hay un error al leer el archivo, asumimos que es porque no existe o el mismo esta vacio, lo manejamos creando un nuevo archivo.
             await this.saveFile();
         }
     }
     async saveFile() {
-        await fs.writeFile(this.jsonFileName, JSON.stringify(this.products, null, 2), 'utf-8');
+        await fsPromises.writeFile(this.jsonFileName, JSON.stringify(this.products, null, 2), 'utf-8');
     };
 
     async addPorduct(title, description, price, thumbnail, code, stock) {
@@ -51,7 +51,6 @@ export default class ProductManager {
     }
 
 
-
     async deleteProduct(id) {
         const prodSelect = this.products.find((p) => p.id == id);
         if (prodSelect) {
@@ -66,9 +65,9 @@ export default class ProductManager {
     }
     //aca se recibe el id
     async updateProductById({ id, ...newValuesForProduct }) {
-        this.readFile();
+        awaitthis.init();
 
-        const productsForUpdate = this.products.find((p) => p.id === id);
+        const productsForUpdate = this.products.findIndex((p) => p.id === id);
         if (productsForUpdate !== -1) {
             this.products[productsForUpdate] = {
                 ...this.products[productsForUpdate],
