@@ -1,4 +1,4 @@
-import { promises as fsPromises } from "fs";
+import { fs } from "fs";
 
 export default class ProductManager {
     constructor(jsonFileName) {
@@ -19,7 +19,7 @@ export default class ProductManager {
         }
     }
     async saveFile() {
-        await fsPromises.writeFile(this.jsonFileName, JSON.stringify(this.products, null, 2), 'utf-8');
+        await fs.writeFile(this.jsonFileName, JSON.stringify(this.products, null, 2), 'utf-8');
     };
 
     async addPorduct(title, description, price, thumbnail, code, stock) {
@@ -55,9 +55,7 @@ export default class ProductManager {
         const prodSelect = this.products.find((p) => p.id == id);
         if (prodSelect) {
             const newProdArr = this.products.filter((p) => p.id != id);
-
             this.products = newProdArr;
-
             await this.saveFile();
         } else {
             console.log("Error al eliminar el producto con id");
@@ -65,15 +63,13 @@ export default class ProductManager {
     }
     //aca se recibe el id
     async updateProductById({ id, ...newValuesForProduct }) {
-        awaitthis.init();
-
         const productsForUpdate = this.products.findIndex((p) => p.id === id);
         if (productsForUpdate !== -1) {
             this.products[productsForUpdate] = {
                 ...this.products[productsForUpdate],
                 newValuesForProduct,
             };
-            await this.saveFile(); // Guardar los productos en el archivo después de la actualización
+            await this.saveFile();
             return this.products[productsForUpdate];
         } else {
             console.error(`Producto con id: ${id} no encontrado`);
